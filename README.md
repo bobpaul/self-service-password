@@ -3,6 +3,18 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/372/badge)](https://bestpractices.coreinfrastructure.org/projects/372)
 [![Build Status](https://travis-ci.org/ltb-project/self-service-password.svg?branch=master)](https://travis-ci.org/ltb-project/self-service-password)
 
+## Fork Description
+This fork integrates password strength metering from Dropbox's zxcvbn library. Both the standard Javascript library (for live strength display as the user types) and the Python library (for server side verification to reject weak passwords) are included as git submodules.
+
+After cloning this repo be sure to load the submodules:
+```
+self-service-password$ git submodule init
+self-service-password$ git submodule update
+```
+
+* This fork adds no settings. Password strength 2 (mediocre) is required. 
+* Only pages/change.php and pages/resetbytoken.php have been updated
+
 ## Presentation
 
 Self Service Password is a PHP application that allows users to change their password in an LDAP directory.

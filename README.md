@@ -13,7 +13,7 @@ self-service-password$ git submodule update
 ```
 
 * This fork adds no settings. Password strength 2 (mediocre) is required. 
-* Only pages/change.php and pages/resetbytoken.php have been updated
+* Only `pages/change.php` and `pages/resetbytoken.php` have been updated. If you use other reset methods (sms, etc) then edit those pages.
 
 ## Presentation
 

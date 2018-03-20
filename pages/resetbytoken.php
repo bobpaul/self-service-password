@@ -181,7 +181,7 @@ if ( $result === "" ) {
 
 if ( $result === "" ){
    $passwordArg = escapeshellarg($newpassword);
-   $strCmd='../lib/vendor/check_strength.py %s';
+   $strCmd='lib/vendor/check_strength.py %s';
    $cmd = sprintf($strCmd, $passwordArg);
    exec($cmd, $output);
    if($output[0] < 2) {

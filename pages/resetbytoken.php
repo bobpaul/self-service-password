@@ -179,6 +179,16 @@ if ( $result === "" ) {
     $result = check_password_strength( $newpassword, "", $pwd_policy_config, $login );
 }
 
+if ( $result === "" ){
+   $passwordArg = escapeshellarg($newpassword);
+   $strCmd='../lib/vendor/check_strength.py %s';
+   $cmd = sprintf($strCmd, $passwordArg);
+   exec($cmd, $output);
+   if($output[0] < 2) {
+     $result = "tooweak";
+   }
+}
+
 # Change password
 if ($result === "") {
     $result = change_password($ldap, $userdn, $newpassword, $ad_mode, $ad_options, $samba_mode, $samba_options, $shadow_options, $hash, $hash_options, "", "");
@@ -228,7 +238,7 @@ if ($pwd_show_policy_pos === 'above') {
 ?>
 
 <div class="alert alert-info">
-<form action="#" method="post" class="form-horizontal">
+<form action="#" method="post" class="form-horizontal" name="passchk_form">
     <input type="hidden" name="token" value="<?php echo htmlentities($token) ?>" />
     <div class="form-group">
         <label for="login" class="col-sm-4 control-label"><?php echo $messages["login"]; ?></label>
@@ -244,7 +254,8 @@ if ($pwd_show_policy_pos === 'above') {
         <div class="col-sm-8">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
-                <input type="password" name="newpassword" id="newpassword" class="form-control" placeholder="<?php echo $messages["newpassword"]; ?>" />
+                <input type="password" name="newpassword" id="newpassword" class="form-control" placeholder="<?php echo $messages["newpassword"]; ?>" /><br>
+		<span id="passchk_result"></span>
             </div>
         </div>
     </div>
@@ -253,7 +264,8 @@ if ($pwd_show_policy_pos === 'above') {
         <div class="col-sm-8">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
-                <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" placeholder="<?php echo $messages["confirmpassword"]; ?>" />
+                <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" placeholder="<?php echo $messages["confirmpassword"]; ?>" /><br>
+		<span id="passchk_result"></span>
             </div>
         </div>
     </div>
@@ -267,7 +279,7 @@ if ($pwd_show_policy_pos === 'above') {
 <?php } ?>
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-success" id="submit_button">
                 <i class="fa fa-fw fa-check-square-o"></i> <?php echo $messages['submit']; ?>
             </button>
         </div>

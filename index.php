@@ -187,6 +187,30 @@ $mailer->LE            = $mail_newline;
        }
   </style>
 <?php } ?>
+<script>
+(function() {
+
+  var ZXCVBN_SRC = 'lib/vendor/zxcvbn/dist/zxcvbn.js';
+
+  var async_load = function() {
+    var first, s;
+    s = document.createElement('script');
+    s.src = ZXCVBN_SRC;
+    s.type = 'text/javascript';
+    s.async = true;
+    first = document.getElementsByTagName('script')[0];
+    return first.parentNode.insertBefore(s, first);
+  };
+
+  if (window.attachEvent != null) {
+    window.attachEvent('onload', async_load);
+  } else {
+    window.addEventListener('load', async_load, false);
+  }
+
+}).call(this);
+</script>
+<script type="text/javascript" src="js/check_pw.js"> </script>
 </head>
 <body>
 

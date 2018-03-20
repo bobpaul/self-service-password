@@ -129,3 +129,4 @@ $messages['emptysetquestionsform'] = "Set your password reset questions";
 $messages['emptysendsmsform'] = "Get a reset code";
 $messages['sameaslogin'] = "Your new password is identical to your login";
 $messages['policydifflogin'] = "Your new password may not be the same as your login";
+$messages['tooweak'] = "New password is too weak; password must be at least \"mediocre\".<br>Add symbols, numbers, length, or <a href='http://www.packetdigital.com/passwdgen.php' target='_blank'>generate a strong password</a>.";

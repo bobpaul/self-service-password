@@ -1,0 +1,6 @@
+[submodule "lib/vendor/zxcvbn"]
+	path = lib/vendor/zxcvbn
+	url = https://github.com/dropbox/zxcvbn.git
+[submodule "lib/vendor/zxcvbn-python"]
+	path = lib/vendor/zxcvbn-python
+	url = https://github.com/dwolfhub/zxcvbn-python.git
